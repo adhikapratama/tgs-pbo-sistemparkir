@@ -1,5 +1,3 @@
-// File: SistemParkirBufferedReader.java
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,6 +15,9 @@ public class SistemParkirBufferedReader {
 
             boolean lanjut = true;
             while (lanjut) {
+                // Menampilkan sisa kapasitas di awal setiap iterasi
+                System.out.println("\nSisa kapasitas parkir: " + Kendaraan.getSisaKapasitas());
+
                 if (!Kendaraan.cekKapasitas()) {
                     System.out.println("Parkir penuh!");
                     break;
@@ -46,10 +47,19 @@ public class SistemParkirBufferedReader {
                     motor.hitungBiaya();
                 }
 
+                // Menampilkan sisa kapasitas setelah parkir
+                System.out.println("Sisa kapasitas parkir sekarang: " + Kendaraan.getSisaKapasitas());
+
                 System.out.print("Lanjut entry? (y/n): ");
                 String jawaban = reader.readLine();
                 lanjut = jawaban.equalsIgnoreCase("y");
             }
+
+            // Menampilkan ringkasan akhir
+            System.out.println("\n=== Ringkasan Parkir ===");
+            System.out.println("Total kapasitas: " + Kendaraan.getKapasitas());
+            System.out.println("Sisa kapasitas: " + Kendaraan.getSisaKapasitas());
+            System.out.println("Terpakai: " + (Kendaraan.getKapasitas() - Kendaraan.getSisaKapasitas()));
 
         } catch (IOException e) {
             System.out.println("Error membaca input: " + e.getMessage());
